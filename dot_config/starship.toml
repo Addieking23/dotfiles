@@ -1,0 +1,59 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+
+format = '''
+[┌─](bright green)\( $shell \)─\( $username@$os(bold blue) \)─\[ $directory \] $git_branch$git_status
+[└──](bright green)$character '''
+
+right_format = """$all"""
+
+[shell]
+fish_indicator = ''
+style = 'bright orange'
+disabled = false
+format = '[$indicator]($style)'
+
+[username]
+show_always = true
+format = '[$user]($style)'
+style_user = 'bold white'
+
+[os]
+disabled = false
+
+[os.symbols]
+Arch = "\uf303"
+
+[directory]
+truncation_symbol = '.../'
+style = 'bold white'
+format = '[$path]($style)[$read_only]($read_only_style)'
+
+[character]
+success_symbol = '\$(bright green)'
+error_symbol = '\$(bright red)'
+format = '$symbol'
+
+[git_branch]
+symbol = ' '
+
+[lua]
+symbol = ' (blue)'
+
+[python]
+symbol = ' (yellow)'
+
+# [palettes.nightfox]
+#
+# black   = "#393b44"
+# red     = "#c94f6d"
+# green   = "#81b29a"
+# yellow  = "#dbc074"
+# blue    = "#719cd6"
+# magenta = "#9d79d6"
+# cyan    = "#63cdcf"
+# white   = "#dfdfe0"
+# orange  = "#f4a261"
+# pink    = "#d67ad2"
+#
+# palette = 'nightfox'
