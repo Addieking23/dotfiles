@@ -147,4 +147,6 @@ bindkey -v
 
 eval "$(starship init zsh)"
 
+export EDITOR="vim"
+
 . "$HOME/.local/bin/env"
