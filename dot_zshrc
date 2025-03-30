@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+# if you come from bash, you might need to reset your $PATH
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
@@ -148,5 +148,6 @@ bindkey -v
 eval "$(starship init zsh)"
 
 export EDITOR="vim"
+path+=("/home/j047m0n/.cargo/bin")
 
 . "$HOME/.local/bin/env"
