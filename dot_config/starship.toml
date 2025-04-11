@@ -19,6 +19,7 @@ $git_status\
 \n[└──](#7b7c7e)$character"""
 
 right_format = """
+[](fg:lang_bg bg:background)\
 $nodejs\
 $rust\
 $golang\
@@ -27,7 +28,7 @@ $php\
 $java\
 $kotlin\
 $haskell\
-$python"""
+$python[▓▒░](os_bg)"""
 
 palette = "carbonfox"
 
