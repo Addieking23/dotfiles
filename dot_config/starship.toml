@@ -9,13 +9,13 @@ format = """
 [┌─](#7b7c7e)[░▒▓](os_bg)\
 $os\
 $username\
-[](bg:dir_bg fg:os_bg)\
+[](bg:dir_bg fg:os_bg)\
 $directory\
-[](fg:dir_bg bg:git_bg)\
+[](fg:dir_bg bg:git_bg)\
 $git_branch\
 $git_status\
-[](fg:git_bg bg:lang_bg)\
-[](fg:lang_bg bg:background)\
+[](fg:git_bg bg:lang_bg)\
+[](fg:lang_bg bg:background)\
 \n[└──](#7b7c7e)$character"""
 
 right_format = """
