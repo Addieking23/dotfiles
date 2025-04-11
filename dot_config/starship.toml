@@ -143,6 +143,11 @@ symbol = ""
 style = "bg:lang_bg"
 format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
 
+[lua]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
 [character]
 disabled = false
 success_symbol = '[\[\$\]](bold fg:#25be6a)'
