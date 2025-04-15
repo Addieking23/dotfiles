@@ -142,7 +142,7 @@ format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
 [python]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = '[[ $symbol( $version) ( $virtualenv) ](fg:lang_fg bg:lang_bg)]($style)'
 
 [lua]
 symbol = ""
