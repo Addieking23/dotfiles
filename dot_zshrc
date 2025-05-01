@@ -120,7 +120,6 @@ alias la="eza -la --icons"
 alias lt="eza -lT --icons"
 
 alias nv="nvim"
-alias lv="NVIM_APPNAME=LazyVim nvim"
 alias man="tldr"
 alias img="wezterm imgcat"
 alias rename="wezterm cli set-tab-title"
@@ -142,8 +141,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v
-
-# bindkey "^R" history-incremental-search-backward
 
 eval "$(starship init zsh)"
 
