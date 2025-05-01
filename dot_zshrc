@@ -147,7 +147,7 @@ bindkey -v
 
 eval "$(starship init zsh)"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 path+=("/home/j047m0n/.cargo/bin")
 
 . "$HOME/.local/bin/env"
