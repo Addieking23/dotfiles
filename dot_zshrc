@@ -124,6 +124,7 @@ alias man="tldr"
 alias img="wezterm imgcat"
 alias rename="wezterm cli set-tab-title"
 alias py="python3"
+alias cl="clear"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
