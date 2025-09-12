@@ -11,8 +11,7 @@ end
 local term = "wezterm"
 
 -- For example, changing the color scheme:
--- config.color_scheme = "Catppuccin Mocha (Gogh)"
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "nightfox"
 config.font = wezterm.font("FiraCode Nerd Font")
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font_size = 13.5
