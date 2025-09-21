@@ -1,6 +1,12 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local config = {}
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -8,10 +14,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-local term = "wezterm"
-
 -- For example, changing the color scheme:
-config.color_scheme = "terafox"
+config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("FiraCode Nerd Font")
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font_size = 13.5
