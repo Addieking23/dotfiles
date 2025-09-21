@@ -1,7 +1,9 @@
 # Tokyo Night Prompt
 
+"$schema" = "https://starship.rs/config-schema.json"
+
 format = """
-[┌─](#a3aed2)░▒▓](#a3aed2)\
+[┌─](#a3aed2)[░▒▓](#a3aed2)\
 [ $os ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#769ff0 fg:#a3aed2)\
 $directory\
@@ -16,8 +18,8 @@ $php\
 $python\
 [](fg:#212736 bg:#1d2230)\
 $time\
-[ ](fg:#1d2230)\
-\n[└──](#a3aed2)character"""
+[](fg:#1d2230)\
+\n[└──](#a3aed2)$character"""
 
 [os]
 disabled = false
