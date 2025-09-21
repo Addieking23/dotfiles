@@ -24,13 +24,6 @@ config.font_size = 13.5
 
 config.window_decorations = "RESIZE"
 
-config.window_padding = {
-	top = 10,
-	bottom = 10,
-	left = 10,
-	right = 10,
-}
-
 -- tmux
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
