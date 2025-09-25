@@ -20,6 +20,7 @@ $git_status\
 
 right_format = """
 [](fg:lang_bg bg:background)\
+$time\
 $nodejs\
 $rust\
 $golang\
@@ -42,6 +43,13 @@ git_bg = "#08bdba"
 git_fg = "#252525"
 lang_bg = "#78a9ff"
 lang_fg = "#353535"
+
+[time]
+disabled = false
+time_format = "%r"                                  # Hour:Minute Format
+use_12hr = true
+style = "bg:#1d2230"
+format = '[[  $time ](bg:os_bg fg:os_fg)]($style)'
 
 [os]
 disabled = false
