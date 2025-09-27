@@ -15,18 +15,24 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:git_bg bg:lang_bg)\
-[](fg:lang_bg bg:background)\
-\n[└──](#7b7c7e)$character"""
-
-right_format = """
-[](fg:lang_bg bg:background)\
-$time\
 $nodejs\
 $rust\
 $golang\
 $c\
 $lua\
-$python[▓▒░](os_bg)"""
+$python\
+[](fg:lang_bg bg:background)\
+\n[└──](#7b7c7e)$character"""
+
+# right_format = """
+# [](fg:lang_bg bg:background)\
+# $time\
+# $nodejs\
+# $rust\
+# $golang\
+# $c\
+# $lua\
+# $python[▓▒░](os_bg)"""
 
 palette = "carbonfox"
 
