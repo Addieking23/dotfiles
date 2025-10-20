@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="duellj"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,6 +76,10 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+  aliases
+  chezmoi
+  python
+  uv
 )
 
   # zsh-fzf-history-search
@@ -113,17 +117,14 @@ fi
 
 
 alias cat="bat"
-alias update="yay -Syu"
 alias tree="tre"
 alias ls="eza"
 alias la="eza -la --icons"
 alias lt="eza -lT --icons"
 
 alias nv="nvim"
-alias man="tldr"
 alias img="wezterm imgcat"
 alias rename="wezterm cli set-tab-title"
-alias py="python3"
 alias cl="clear"
 
 function y() {
