@@ -17,8 +17,8 @@ end
 config.term = "xterm-256color"
 
 -- For example, changing the color scheme:
-config.color_scheme = "carbonfox"
-config.font = wezterm.font("Modus-Vivendi")
+config.color_scheme = "Modus-Vivendi"
+config.font = wezterm.font("FiraCode Nerd Font")
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font_size = 13.5
 
