@@ -1,7 +1,7 @@
 # ~/.config/starship.toml
 
 # Inserts a blank line between shell prompts
-add_newline = false
+add_newline = true
 
 # Use a palette to make colors consistent and easy to change
 
