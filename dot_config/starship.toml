@@ -52,12 +52,12 @@ deleted = "✘${count}"
 format = "[$all_status]($style) "
 
 [character]
-success_symbol = "[\[\$\]](fg:modus_blue bold)"
-error_symbol = "[\[\$\]](fg:modus_red bold)"
-vimcmd_symbol = "[❮](fg:modus_green bold)"
-vimcmd_replace_one_symbol = "[❮](fg:modus_magenta bold)"
-vimcmd_replace_symbol = "[❮](fg:modus_magenta bold)"
-vimcmd_visual_symbol = "[❮](fg:modus_yellow bold)"
+success_symbol = '[\[\$\]](fg:modus_blue bold)'
+error_symbol = '[\[\$\]](fg:modus_red bold)'
+vimcmd_symbol = '[\[\]](fg:modus_green bold)'
+vimcmd_replace_one_symbol = '[\[\]](fg:modus_magenta bold)'
+vimcmd_replace_symbol = '[\[\]](fg:modus_magenta bold)'
+vimcmd_visual_symbol = '[\[\]](fg:modus_yellow bold)'
 
 # Disable modules you don't want for a truly minimal experience
 [username]
