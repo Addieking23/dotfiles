@@ -14,11 +14,6 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:git_bg bg:lang_bg)\
-[](fg:lang_bg bg:background)\
-\n[└──](#505050)$character"""
-
-right_format = """
-[](fg:lang_bg bg:background)\
 $nodejs\
 $rust\
 $golang\
@@ -28,8 +23,8 @@ $java\
 $kotlin\
 $haskell\
 $python\
-$time[▓▒░](os_bg)"""
-
+[](fg:lang_bg bg:background)\
+\n[└──](#505050)$character"""
 
 palette = "modus_vivendi"
 
