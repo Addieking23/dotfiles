@@ -19,6 +19,7 @@ $git_status\
 
 right_format = """
 [](fg:lang_bg bg:background)\
+&time\
 $nodejs\
 $rust\
 $golang\
@@ -158,3 +159,7 @@ error_symbol = '[\[\$\]](bold fg:#ff5f59)'
 vimcmd_symbol = '[\[\]](bold fg:#44bc44)'
 vimcmd_replace_symbol = '[\[\]](bold fg:#feacd0)'
 vimcmd_visual_symbol = '[\[\]](bold fg:#d0bc00)'
+
+[time]
+disabled = false
+use_12hr = true
