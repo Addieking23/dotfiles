@@ -1,73 +1,160 @@
-# ~/.config/starship.toml
+# [metadata]
+# name = "modus_vivendi"
+# author = "adapted by ChatGPT from wjohnsto's carbonfox config"
 
-# Inserts a blank line between shell prompts
-add_newline = true
-
-# Use a palette to make colors consistent and easy to change
-
-palette = "modus"
-
-[palettes.modus]
-modus_fg = '#bbbbbb'
-modus_blue = '#0050a0'
-modus_magenta = '#721045'
-modus_green = '#005e00'
-modus_yellow = '#915300'
-modus_red = '#a60000'
-
-# The main prompt format
-# Line 1: Directory and Git information
-# Line 2: The prompt character
+"$schema" = "https://starship.rs/config-schema.json"
 
 format = """
-$directory$git_branch$git_status
-$character"""
+[┌─](#505050)[░▒▓](os_bg)\
+$os\
+$username\
+[](bg:dir_bg fg:os_bg)\
+$directory\
+[](fg:dir_bg bg:git_bg)\
+$git_branch\
+$git_status\
+[](fg:git_bg bg:lang_bg)\
+[](fg:lang_bg bg:background)\
+\n[└──](#505050)$character"""
 
-# --- Module Configurations ---
+right_format = """
+[](fg:lang_bg bg:background)\
+$nodejs\
+$rust\
+$golang\
+$c\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python[▓▒░](os_bg)"""
+
+palette = "modus_vivendi"
+
+[palettes.modus_vivendi]
+red = "#ff5f59"
+green = "#44bc44"
+purple = "#feacd0"
+yellow = "#d0bc00"
+blue = "#2fafff"
+cyan = "#00d3d0"
+os_bg = "#505050"
+os_fg = "#ffffff"
+dir_bg = "#2fafff"
+dir_fg = "#000000"
+git_bg = "#00d3d0"
+git_fg = "#000000"
+lang_bg = "#44bc44"
+lang_fg = "#000000"
+background = "#000000"
+
+[os]
+disabled = false
+style = "bg:os_bg fg:os_fg"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bg:os_bg fg:os_fg"
+style_root = "bg:os_bg fg:red"
+format = "[ $user ]($style)"
 
 [directory]
-style = "fg:modus_blue bold"
+style = "fg:dir_fg bg:dir_bg"
+format = "[ $path ]($style)"
 truncation_length = 3
-truncate_to_repo = true
-read_only = " 🔒"
-read_only_style = "fg:modus_yellow"
-format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"src" = " "
 
 [git_branch]
-symbol = ""
-style = "fg:modus_magenta bold"
-format = "on [$symbol $branch]($style) "
+symbol = ""
+style = "bg:git_bg"
+format = '[[ $symbol $branch ](fg:git_fg bg:git_bg)]($style)'
 
 [git_status]
-style = "fg:modus_yellow"
-stashed = " ${count}"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "?${count}"
-staged = "+${count}"
-modified = "~${count}"
-renamed = "»${count}"
-deleted = "✘${count}"
-format = "[$all_status]($style) "
+style = "bg:git_bg"
+format = '[[($all_status$ahead_behind )](fg:git_fg bg:git_bg)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[c]
+symbol = " "
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[php]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[java]
+symbol = " "
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[python]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ( $virtualenv) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[lua]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
 
 [character]
-success_symbol = '[\[\$\]](fg:modus_blue bold)'
-error_symbol = '[\[\$\]](fg:modus_red bold)'
-vimcmd_symbol = '[\[\]](fg:modus_green bold)'
-vimcmd_replace_one_symbol = '[\[\]](fg:modus_magenta bold)'
-vimcmd_replace_symbol = '[\[\]](fg:modus_magenta bold)'
-vimcmd_visual_symbol = '[\[\]](fg:modus_yellow bold)'
-
-# Disable modules you don't want for a truly minimal experience
-[username]
-disabled = true
-
-[hostname]
-disabled = true
-
-[time]
-disabled = true
-
-[cmd_duration]
-disabled = true
+disabled = false
+success_symbol = '[\[\$\]](bold fg:#44bc44)'
+error_symbol = '[\[\$\]](bold fg:#ff5f59)'
+vimcmd_symbol = '[\[\]](bold fg:#44bc44)'
+vimcmd_replace_symbol = '[\[\]](bold fg:#feacd0)'
+vimcmd_visual_symbol = '[\[\]](bold fg:#d0bc00)'
