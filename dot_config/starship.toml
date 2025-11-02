@@ -19,7 +19,7 @@ $git_status\
 
 right_format = """
 [](fg:lang_bg bg:background)\
-&time\
+$time\
 $nodejs\
 $rust\
 $golang\
