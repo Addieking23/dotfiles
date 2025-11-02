@@ -26,24 +26,25 @@ $python\
 [](fg:lang_bg bg:background)\
 \n[└──](#505050)$character"""
 
-palette = "modus_vivendi"
+palette = "vivendi_deuteranopia"
 
-[palettes.modus_vivendi]
-red = "#ff5f59"
-green = "#44bc44"
-purple = "#feacd0"
-yellow = "#d0bc00"
-blue = "#2fafff"
-cyan = "#00d3d0"
-os_bg = "#505050"
-os_fg = "#ffffff"
-dir_bg = "#2fafff"
-dir_fg = "#000000"
-git_bg = "#00d3d0"
-git_fg = "#000000"
-lang_bg = "#44bc44"
-lang_fg = "#000000"
-background = "#000000"
+[palettes.vivendi_deuteranopia]
+background = "#000000" # main dark background
+foreground = "#ffffff" # main text
+blue = "#2fafff"       # accent (from base vivendi)
+yellow = "#d0bc00"     # accent (from base vivendi)
+magenta = "#feacd0"    # secondary accent
+cyan = "#00d3d0"       # info/hint accent
+os_bg = "#505050"      # OS segment background
+os_fg = "#ffffff"      # OS segment foreground
+dir_bg = "#2fafff"     # directory segment background (using blue)
+dir_fg = "#000000"     # directory segment foreground
+git_bg = "#00d3d0"     # git segment background (using cyan)
+git_fg = "#000000"     # git segment foreground
+lang_bg = "#d0bc00"    # language/tool segment background (using yellow)
+lang_fg = "#000000"    # language/tool segment foreground
+red = "#ff5f59"        # still defined, but diff semantics will override
+green = "#44bc44"      # still defined, but diff semantics will override
 
 [os]
 disabled = false
