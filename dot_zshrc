@@ -151,6 +151,7 @@ bindkey -v
 eval "$(starship init zsh)"
 
 export EDITOR="nvim"
+export BAT_THEME="modus_vivendi_deuteranopia"
 path+=("/home/j047m0n/.cargo/bin")
 
 . "$HOME/.local/bin/env"
