@@ -19,7 +19,6 @@ $git_status\
 
 right_format = """
 [](fg:lang_bg bg:background)\
-$time\
 $nodejs\
 $rust\
 $golang\
@@ -28,7 +27,9 @@ $php\
 $java\
 $kotlin\
 $haskell\
-$python[▓▒░](os_bg)"""
+$python\
+$time[▓▒░](os_bg)"""
+
 
 palette = "modus_vivendi"
 
