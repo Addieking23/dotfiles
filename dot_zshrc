@@ -126,7 +126,7 @@ alias nv="nvim"
 alias img="wezterm imgcat"
 alias rename="wezterm cli set-tab-title"
 alias cl="clear"
-alias nk='NVIM_APPNAME="kickstart" nvim'
+alias nk='NVIM_APPNAME="kickstart_nvim" nvim'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
