@@ -2,6 +2,8 @@
 # name = "modus_vivendi"
 # author = "adapted by ChatGPT from wjohnsto's carbonfox config"
 
+scan_timeout = 60
+
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
