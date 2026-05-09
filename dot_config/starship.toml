@@ -2,7 +2,7 @@
 # name = "modus_vivendi"
 # author = "adapted by ChatGPT from wjohnsto's carbonfox config"
 
-scan_timeout = 60
+scan_timeout = 100
 
 "$schema" = "https://starship.rs/config-schema.json"
 
@@ -31,22 +31,22 @@ $python\
 palette = "vivendi_deuteranopia"
 
 [palettes.vivendi_deuteranopia]
-background = "#000000" # main dark background
-foreground = "#ffffff" # main text
-blue = "#2fafff"       # accent (from base vivendi)
-yellow = "#d0bc00"     # accent (from base vivendi)
-magenta = "#feacd0"    # secondary accent
-cyan = "#00d3d0"       # info/hint accent
-os_bg = "#505050"      # OS segment background
-os_fg = "#ffffff"      # OS segment foreground
-dir_bg = "#2fafff"     # directory segment background (using blue)
-dir_fg = "#000000"     # directory segment foreground
-git_bg = "#00d3d0"     # git segment background (using cyan)
-git_fg = "#000000"     # git segment foreground
-lang_bg = "#d0bc00"    # language/tool segment background (using yellow)
-lang_fg = "#000000"    # language/tool segment foreground
-red = "#ff5f59"        # still defined, but diff semantics will override
-green = "#44bc44"      # still defined, but diff semantics will override
+background = "#000000"  # main dark background
+foreground = "#ffffff"  # main text
+blue = "#2fafff"  # accent (from base vivendi)
+yellow = "#d0bc00"  # accent (from base vivendi)
+magenta = "#feacd0"  # secondary accent
+cyan = "#00d3d0"  # info/hint accent
+os_bg = "#505050"  # OS segment background
+os_fg = "#ffffff"  # OS segment foreground
+dir_bg = "#2fafff"  # directory segment background (using blue)
+dir_fg = "#000000"  # directory segment foreground
+git_bg = "#00d3d0"  # git segment background (using cyan)
+git_fg = "#000000"  # git segment foreground
+lang_bg = "#d0bc00"  # language/tool segment background (using yellow)
+lang_fg = "#000000"  # language/tool segment foreground
+red = "#ff5f59"  # still defined, but diff semantics will override
+green = "#44bc44"  # still defined, but diff semantics will override
 
 [os]
 disabled = false
@@ -95,61 +95,61 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:git_bg"
-format = '[[ $symbol $branch ](fg:git_fg bg:git_bg)]($style)'
+format = "[[ $symbol $branch ](fg:git_fg bg:git_bg)]($style)"
 
 [git_status]
 style = "bg:git_bg"
-format = '[[($all_status$ahead_behind )](fg:git_fg bg:git_bg)]($style)'
+format = "[[($all_status$ahead_behind )](fg:git_fg bg:git_bg)]($style)"
 
 [nodejs]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [c]
 symbol = " "
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [rust]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [golang]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [php]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [java]
 symbol = " "
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [kotlin]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [haskell]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [python]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ( $virtualenv) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ( $virtualenv) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [lua]
 symbol = ""
 style = "bg:lang_bg"
-format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [character]
 disabled = false
