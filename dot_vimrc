@@ -1,28 +1,513 @@
-set nocompatible
-set autoindent
-set expandtab
-set shiftround
-set shiftwidth=4
-set smarttab
-set tabstop=4
-set hlsearch
-set ignorecase
-set incsearch
-set smartcase
-set complete=i
-set lazyredraw
-set encoding=utf-8
-set linebreak
-set scrolloff=10
-set wrap
-set laststatus=2
-set number
-set relativenumber
-set noerrorbells
-set mouse=a
-set background=dark
-set confirm
+" ╔══════════════════════════════════════════════════════════════╗
+" ║                  MODERN VIM - NO PLUGINS                     ║
+" ║         Full IDE experience using only native Vim            ║
+" ╚══════════════════════════════════════════════════════════════╝
 
-filetype on
-filetype indent on
-syntax enable
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  CORE - Must be first
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set nocompatible                " Disable Vi compatibility — unlock full Vim
+filetype plugin indent on       " Enable filetype detection + per-type settings
+syntax enable                   " Syntax highlighting
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  APPEARANCE
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set number                      " Absolute line number on current line
+set relativenumber              " Relative numbers for fast j/k navigation
+set cursorline                  " Highlight the current line
+set signcolumn=yes              " Always show sign column (no layout shift)
+set showmatch                   " Briefly jump to matching bracket
+set matchtime=2                 " How long (tenths of sec) to show the match
+set laststatus=2                " Always show the status line
+set showtabline=2               " Always show the tab bar
+set showcmd                     " Show partial commands in the bottom right
+set title                       " Set terminal title to filename
+set termguicolors               " 24-bit RGB colors (modern terminals)
+set background=dark
+
+" ── Colorscheme (best built-ins; uncomment the one you like) ──
+colorscheme modus_vivendi_deuteranopia
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  EDITOR BEHAVIOUR
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set hidden                      " Switch buffers without saving
+set confirm                     " Ask instead of failing on unsaved changes
+set autoread                    " Reload files changed outside Vim
+set updatetime=300              " Faster CursorHold events (ms)
+set timeoutlen=500              " Key sequence timeout (ms)
+set ttimeoutlen=10              " Key code timeout (faster Escape)
+set history=10000               " Command history size
+set undofile                    " Persistent undo across sessions
+set undodir=~/.vim/undo//       " Undo files location (// = unique names)
+set undolevels=10000            " Max undo steps
+set backupdir=~/.vim/backup//   " Backups out of the way
+set directory=~/.vim/swap//     " Swapfiles out of the way
+set backup                      " Keep backup files
+set swapfile                    " Keep swap files (crash recovery)
+
+" Create dirs if they don't exist
+if !isdirectory(expand('~/.vim/undo'))
+  silent! call mkdir(expand('~/.vim/undo'), 'p', 0700)
+endif
+if !isdirectory(expand('~/.vim/backup'))
+  silent! call mkdir(expand('~/.vim/backup'), 'p', 0700)
+endif
+if !isdirectory(expand('~/.vim/swap'))
+  silent! call mkdir(expand('~/.vim/swap'), 'p', 0700)
+endif
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  INDENTATION & WHITESPACE
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set expandtab                   " Tabs → spaces
+set tabstop=4                   " Visual width of a tab character
+set softtabstop=4               " Spaces inserted on Tab key
+set shiftwidth=4                " Spaces for >> / << indent
+set shiftround                  " Round indent to multiple of shiftwidth
+set autoindent                  " Copy indent from previous line
+set smartindent                 " Context-aware auto-indent
+set wrap                        " Wrap long lines visually
+set linebreak                   " Wrap at word boundaries, not mid-word
+set breakindent                 " Preserve indent on wrapped lines
+set showbreak=↳\                " Visual cue for wrapped lines
+set list                        " Show invisible characters
+set listchars=tab:→\ ,trail:·,nbsp:␣,extends:›,precedes:‹
+
+" Per-filetype overrides
+
+" ===================== PYTHON SPECIFIC =====================
+augroup python_settings
+    autocmd!
+    autocmd FileType python
+        \ setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=88 |
+        \ setlocal colorcolumn=88 |
+        \ setlocal commentstring=#\ %s |
+        \ highlight ColorColumn ctermbg=235 guibg=#2c2c2c
+augroup END
+
+" ===================== C / C++ SPECIFIC =====================
+augroup c_settings
+    autocmd!
+    autocmd FileType c,cpp
+        \ setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=100 |
+        \ setlocal colorcolumn=100 |
+        \ setlocal cindent |
+        \ setlocal commentstring=//\ %s
+augroup END
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  SEARCH
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set incsearch                   " Search as you type
+set hlsearch                    " Highlight all matches
+set ignorecase                  " Case-insensitive by default
+set smartcase                   " ...unless pattern has uppercase
+" set grepprg=grep\ -rn\ --color=never\ $*
+                                " Use grep; swap for rg/ag if available:
+set grepprg=rg\ --vimgrep\ --smart-case
+
+" Clear search highlight with <Esc> in normal mode
+nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  SPLITS & WINDOWS
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set splitright                  " Vertical splits open to the right
+set splitbelow                  " Horizontal splits open below
+" set winminwidth=3               " Minimum window width
+" set winminheight=3              " Minimum window height
+set equalalways                 " Keep splits equal size
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  COMPLETION (native omni/ins-completion)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set omnifunc=syntaxcomplete#Complete   " Fallback omni-completion
+set complete=.,w,b,u,t,i,kspell       " Ins-completion sources
+set completeopt=menu,menuone,noselect,popup
+                                       " popup = inline doc (Vim 9)
+set pumheight=12                       " Max items in completion menu
+
+" Ctrl-Space for omni-complete
+inoremap <C-Space> <C-x><C-o>
+" Use Tab / S-Tab to navigate the completion menu (only when open)
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Enter confirms selection without inserting newline
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  WILDMENU (command-line completion)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set wildmenu                    " Visual completion menu
+set wildmode=longest:full,full  " Complete longest, then cycle
+set wildignorecase              " Case-insensitive file matching
+set wildignore+=*.o,*.obj,*.pyc,*.class,*.beam
+set wildignore+=.git/,.svn/,.hg/
+set wildignore+=node_modules/,__pycache__/,.mypy_cache/
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.pdf,*.zip,*.tar.*
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  NETRW (built-in file explorer, like NERDTree)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let g:netrw_banner       = 0    " Hide the banner
+let g:netrw_liststyle    = 3    " Tree view
+let g:netrw_browse_split = 4    " Open files in previous window
+let g:netrw_altv         = 1    " Vertical split on 'v'
+let g:netrw_winsize      = 25   " 25% width
+let g:netrw_keepdir      = 0    " Track current directory
+
+" Toggle Netrw sidebar (like :NERDTreeToggle)
+let g:NetrwIsOpen = 0
+function! ToggleNetrw()
+  if g:NetrwIsOpen
+    let i = bufnr('$')
+    while i >= 1
+      if getbufvar(i, '&filetype') ==# 'netrw'
+        silent execute 'bwipeout ' . i
+      endif
+      let i -= 1
+    endwhile
+    let g:NetrwIsOpen = 0
+  else
+    let g:NetrwIsOpen = 1
+    silent Lexplore
+  endif
+endfunction
+nnoremap <silent> <Leader>e :call ToggleNetrw()<CR>
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  STATUSLINE (no plugins needed)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+" function! GitBranch()
+"   let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+"   return strlen(l:branch) > 0 ? ' ⎇ ' . l:branch . ' ' : ''
+" endfunction
+"
+" function! StatuslineMode()
+"   let l:mode_map = {
+"         \ 'n':  'NORMAL',  'i': 'INSERT',  'v': 'VISUAL',
+"         \ 'V':  'V-LINE',  '': 'V-BLOCK', 'c': 'COMMAND',
+"         \ 'R':  'REPLACE', 's': 'SELECT',  't': 'TERMINAL',
+"         \ 'no': 'OP-PEND', 'S': 'S-LINE', '': 'S-BLOCK'
+"         \ }
+"   return get(l:mode_map, mode(), mode())
+" endfunction
+"
+" set statusline=
+" set statusline+=%#PmenuSel#
+" set statusline+=\ %{StatuslineMode()}\ 
+" set statusline+=%#LineNr#
+" set statusline+=\ %f                     " Relative filepath
+" set statusline+=%m                       " Modified flag [+]
+" set statusline+=%r                       " Readonly flag [RO]
+" set statusline+=%#Comment#
+" set statusline+=%{GitBranch()}
+" set statusline+=%=                       " Right-align everything after
+" set statusline+=%#LineNr#
+" set statusline+=\ %y                     " Filetype [vim]
+" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+" set statusline+=\[%{&fileformat}\]
+" set statusline+=\ %p%%                   " Percentage through file
+" set statusline+=\ %l:%c\ 
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  TABLINE (buffer tabs without plugins)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function! Tabline()
+  let l:s = ''
+  for i in range(1, bufnr('$'))
+    if !buflisted(i) | continue | endif
+    let l:name    = fnamemodify(bufname(i), ':t')
+    let l:name    = empty(l:name) ? '[No Name]' : l:name
+    let l:current = (i == bufnr('%'))
+    let l:mod     = getbufvar(i, '&modified') ? ' ●' : ''
+    let l:s .= l:current ? '%#TabLineSel#' : '%#TabLine#'
+    let l:s .= ' ' . i . '  ' . l:name . l:mod . ' '
+  endfor
+  let l:s .= '%#TabLineFill#'
+  return l:s
+endfunction
+set tabline=%!Tabline()
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  KEY MAPPINGS
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let mapleader      = " "        " Space as leader
+let maplocalleader = ","        " Comma as local leader
+
+" ── Save / Quit ──────────────────────────────────────────────
+nnoremap <Leader>w  :w<CR>
+nnoremap <Leader>W  :wa<CR>
+nnoremap <Leader>q  :q<CR>
+nnoremap <Leader>Q  :qa!<CR>
+" Save with sudo (when you forgot to open as root)
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" ── Window navigation (Ctrl+hjkl like tmux/IDE) ──────────────
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" ── Window resize (arrow keys in normal mode) ─────────────────
+nnoremap <Left>  :vertical resize -3<CR>
+nnoremap <Right> :vertical resize +3<CR>
+nnoremap <Up>    :resize +3<CR>
+nnoremap <Down>  :resize -3<CR>
+
+" ── Buffer navigation ─────────────────────────────────────────
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bl :ls<CR>
+" Jump to buffer by number: <Leader>1 ... <Leader>9
+for s:i in range(1, 9)
+  execute 'nnoremap <Leader>' . s:i . ' :buffer ' . s:i . '<CR>'
+endfor
+
+" ── Tab navigation ────────────────────────────────────────────
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tc :tabclose<CR>
+nnoremap <Leader>to :tabonly<CR>
+nnoremap <Tab>      :tabnext<CR>
+nnoremap <S-Tab>    :tabprevious<CR>
+
+" ── Fuzzy file finder (native :find with **) ──────────────────
+set path+=**                    " Search recursively with :find
+nnoremap <Leader>ff :find *
+nnoremap <Leader>fs :sfind *
+nnoremap <Leader>fv :vert sfind *
+
+" ── Buffer fuzzy search (like Ctrl-P) ─────────────────────────
+nnoremap <Leader>fb :buffer *
+
+" ── Quickfix / Location list ──────────────────────────────────
+nnoremap <Leader>co :copen<CR>
+nnoremap <Leader>cc :cclose<CR>
+nnoremap <Leader>cn :cnext<CR>
+nnoremap <Leader>cp :cprev<CR>
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
+
+" ── Grep (search in project) ──────────────────────────────────
+" <Leader>g<word> greps the word under cursor
+nnoremap <Leader>g  :silent grep! -r ''<Left>
+nnoremap <Leader>gw :silent grep! -rw '<C-r><C-w>'<CR>:copen<CR>
+
+" ── Code navigation (tags) ────────────────────────────────────
+" Requires ctags: run `ctags -R .` in project root
+nnoremap <Leader>]  :tag <C-r><C-w><CR>
+nnoremap <Leader>[  :pop<CR>
+nnoremap <Leader>ts :tselect <C-r><C-w><CR>
+
+" ── Terminal (Vim 8+ built-in) ────────────────────────────────
+nnoremap <Leader>tv :vertical terminal<CR>
+nnoremap <Leader>th :terminal<CR>
+tnoremap <Esc><Esc> <C-\><C-n>          " Escape terminal mode
+
+" ── Editing helpers ───────────────────────────────────────────
+" Move lines up/down in normal and visual mode
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Indent/dedent in visual, stay in visual
+vnoremap < <gv
+vnoremap > >gv
+
+" Don't lose selection on yank in visual
+vnoremap y ygv
+
+" Yank to end of line (consistent with D and C)
+nnoremap Y y$
+
+" Paste and keep register (don't clobber with deleted text)
+vnoremap p "_dP
+
+" Select last pasted text
+nnoremap gp `[v`]
+
+" Join lines without space
+nnoremap J mzJ`z
+
+" Center view on search jumps
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
+
+" Keep cursor in place on C-d / C-u
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" ── Spell checking ────────────────────────────────────────────
+nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <Leader>sn ]s
+nnoremap <Leader>ss z=
+
+" ── Fold helpers ──────────────────────────────────────────────
+nnoremap <Leader>za za
+nnoremap <Leader>zR zR
+nnoremap <Leader>zM zM
+
+" ── Insert mode comfort ───────────────────────────────────────
+" Move to end of line in insert mode
+inoremap <C-e> <C-o>$
+" Move to start of line in insert mode
+inoremap <C-a> <C-o>^
+" Delete word backwards in insert mode
+inoremap <C-BS> <C-w>
+
+" ── Command-line convenience ──────────────────────────────────
+" Bash-style navigation in command line
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  FOLDING
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set foldmethod=indent           " Fold by indent (works everywhere)
+set foldlevelstart=99           " Open all folds by default
+set foldnestmax=5               " Limit fold depth
+set foldcolumn=1                " Show fold indicators in gutter
+
+" Prettier fold text
+function! NeatFoldText()
+  let l:line   = getline(v:foldstart)
+  let l:indent = matchstr(l:line, '^\s*')
+  let l:clean  = substitute(l:line, '^\s*', '', '')
+  let l:lines  = v:foldend - v:foldstart + 1
+  return l:indent . '▶ ' . l:clean . ' ··· ' . l:lines . ' lines'
+endfunction
+set foldtext=NeatFoldText()
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  AUTO-PAIRS (bracket / quote closing — no plugins)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+inoremap {<CR> {<CR>}<Esc>O
+inoremap (<CR> (<CR>)<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap ` ``<Left>
+
+" Skip over closing bracket if already there
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) ==# ')' ? "\<Right>" : ')'
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) ==# ']' ? "\<Right>" : ']'
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) ==# '}' ? "\<Right>" : '}'
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  ABBREVIATIONS (typo correction + snippets)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+" Common typos
+iabbrev teh     the
+iabbrev hte     the
+iabbrev adn     and
+iabbrev waht    what
+iabbrev recieve receive
+iabbrev occured occurred
+
+" Date/time stamps
+" iabbrev <expr> ,date strftime('%Y-%m-%d')
+" iabbrev <expr> ,time strftime('%H:%M:%S')
+" iabbrev <expr> ,dt   strftime('%Y-%m-%d %H:%M:%S')
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  AUTOCOMMANDS
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+augroup GeneralAutocmds
+  autocmd!
+  " Return to last edit position when reopening a file
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   execute "normal! g'\""
+        \ | endif
+
+  " Trim trailing whitespace on save (except markdown/txt)
+  autocmd BufWritePre *
+        \ if &ft !~# 'markdown\|text'
+        \ |   let l:save = winsaveview()
+        \ |   silent! keeppatterns %s/\s\+$//e
+        \ |   call winrestview(l:save)
+        \ | endif
+
+  " Auto-reload vimrc on save
+"  autocmd BufWritePost $MYVIMRC source $MYVIMRC | echom "vimrc reloaded"
+
+  " Resize splits when Vim is resized
+  autocmd VimResized * tabdo wincmd =
+
+  " Highlight yanked text briefly (Vim 9+ / neovim)
+  if exists('##TextYankPost')
+    autocmd TextYankPost * silent! call timer_start(0, {->
+          \ execute("let &hlsearch=&hlsearch") })
+  endif
+
+  " Set cursorline only in active window
+  autocmd WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+
+  " Open quickfix window automatically after grep
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
+augroup END
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  PERFORMANCE
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set lazyredraw                  " Don't redraw during macros
+set ttyfast                     " Assume fast terminal
+set synmaxcol=300               " Don't highlight very long lines
+set regexpengine=1              " Use old engine (faster for most syntax)
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  MISC QUALITY-OF-LIFE
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set scrolloff=8                 " Keep 8 lines above/below cursor
+set sidescrolloff=8             " Keep 8 cols left/right of cursor
+set sidescroll=1                " Scroll one column at a time
+set clipboard^=unnamed,unnamedplus   " Use system clipboard
+set mouse=a                     " Mouse support in all modes
+set noerrorbells                " No bell
+set belloff=all
+set formatoptions+=j            " Remove comment leader when joining lines
+set nrformats-=octal            " Don't treat 007 as octal for <C-a>/<C-x>
+set virtualedit=block           " Allow cursor past EOL in visual block
+set iskeyword+=-                " Treat hyphenated-words as one word
+
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"  LEADER MAP REFERENCE (press <Leader> and wait)
+" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+" <Space>w/W    Save / Save all
+" <Space>q/Q    Quit / Force-quit all
+" <Space>e      Toggle file explorer (Netrw)
+" <Space>ff     Find file  (:find *)
+" <Space>fs/fv  Find in split / vertical split
+" <Space>fb     Find buffer
+" <Space>bn/bp  Next / Previous buffer
+" <Space>bd     Delete buffer
+" <Space>bl     List buffers
+" <Space>1-9    Jump to buffer by number
+" <Space>tn/tc  New tab / Close tab
+" <Space>co/cc  Open / Close quickfix
+" <Space>cn/cp  Next / Prev quickfix item
+" <Space>g      Grep prompt
+" <Space>gw     Grep word under cursor
+" <Space>]  /[  Jump to tag / Jump back
+" <Space>tv/th  Terminal vertical / horizontal
+" <Space>sp     Toggle spell check
+" <Space>za     Toggle fold
+" <Space>zR/zM  Open all / Close all folds
+" Ctrl+h/j/k/l  Navigate windows
+" Arrow keys     Resize windows (normal mode)
+" Alt+j/k       Move line up/down
