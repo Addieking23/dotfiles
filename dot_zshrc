@@ -123,6 +123,7 @@ alias la="eza -la --icons"
 alias lt="eza -lT --icons"
 
 alias nv="nvim"
+alias vi="vim"
 alias img="wezterm imgcat"
 alias rename="wezterm cli set-tab-title"
 alias cl="clear"
@@ -137,6 +138,12 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+  if [[ -z "$TMUX" ]]; then
+    exec tmux new-session -A -s main
+  fi
+fi
 
 eval "$(zoxide init --cmd cd zsh)"
 
