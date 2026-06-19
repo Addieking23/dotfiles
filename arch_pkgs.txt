@@ -107,6 +107,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pkgfile
+postgresql
 proton-vpn-gtk-app
 python-pip
 reflector
@@ -135,6 +136,7 @@ tree-sitter-cli
 ttf-firacode-nerd
 ttf-hack-nerd
 ttf-jetbrains-mono-nerd
+valkey
 vim
 wezterm
 wget

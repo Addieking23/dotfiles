@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 648471c9eb1f757729e800ff0a6509e01232a8e9 Addieking23 <187160262+Addieking23@users.noreply.github.com> 1776378877 -0500	clone: from github.com:Addieking23/kickstart.nvim
+648471c9eb1f757729e800ff0a6509e01232a8e9 9273d0d55bd5d3ddc3d70807afda6c67452c1c65 Addieking23 <187160262+Addieking23@users.noreply.github.com> 1776879194 -0500	commit: Added theme, updated autocommands, updated keymaps
+9273d0d55bd5d3ddc3d70807afda6c67452c1c65 0ea48fe1072d6e2dd72a6a149ebb3ea22f9c1cba Addieking23 <187160262+Addieking23@users.noreply.github.com> 1777411981 -0500	commit: updated python lsp, started modularizing
+0ea48fe1072d6e2dd72a6a149ebb3ea22f9c1cba b794b8628c282ca695fa862adefeb1ceef68999d Addieking23 <187160262+Addieking23@users.noreply.github.com> 1777492454 -0500	commit: continued modularizing config
+b794b8628c282ca695fa862adefeb1ceef68999d cdf7d1b17252253f8f12be3c23e13ecd7178a8e9 Addieking23 <187160262+Addieking23@users.noreply.github.com> 1778002390 -0500	commit: changed blink config, added noice
+cdf7d1b17252253f8f12be3c23e13ecd7178a8e9 0c625235df1815ef6bb7f6544ab729fc05fb8ed4 Addieking23 <187160262+Addieking23@users.noreply.github.com> 1778248757 -0500	commit: added typescript support, fixed modus
