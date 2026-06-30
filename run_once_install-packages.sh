@@ -3,16 +3,21 @@ set -e
 
 # Install yay if not installed
 if ! command -v yay &>/dev/null; then
-  sudo pacman -S --needed git base-devel
-  git clone https://aur.archlinux.org/yay.git
-  cd yay || exit
-  makepkg -si --noconfirm
+  sudo pacman -S --needed --noconfirm git base-devel
+  tmpdir=$(mktemp -d)
+  git clone https://aur.archlinux.org/yay.git "$tmpdir/yay"
+  (cd "$tmpdir/yay" && makepkg -si --noconfirm)
+  rm -rf "$tmpdir"
 fi
 
 # Install packages from Arch repos
-packages=$(cat "$HOME/.local/share/chezmoi/arch_pkgs.txt")
-sudo pacman -S --needed "$packages"
+mapfile -t packages < "$HOME/.local/share/chezmoi/arch_pkgs.txt"
+if [ ${#packages[@]} -gt 0 ]; then
+  sudo pacman -S --needed --noconfirm "${packages[@]}"
+fi
 
 # Install AUR packages
-aur_packages="$HOME/.local/share/chezmoi/arch_forign_pkgs.txt"
-yay -S --needed "$aur_packages"
+mapfile -t aur_packages < "$HOME/.local/share/chezmoi/arch_forign_pkgs.txt"
+if [ ${#aur_packages[@]} -gt 0 ]; then
+  yay -S --needed --noconfirm "${aur_packages[@]}"
+fi
