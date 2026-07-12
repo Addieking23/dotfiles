@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 # Install yay if not installed
 if ! command -v yay &>/dev/null; then
@@ -11,13 +11,13 @@ if ! command -v yay &>/dev/null; then
 fi
 
 # Install packages from Arch repos
-mapfile -t packages < "$HOME/.local/share/chezmoi/arch_pkgs.txt"
+mapfile -t packages < "{{ .chezmoi.sourceDir }}/arch-packages.txt"
 if [ ${#packages[@]} -gt 0 ]; then
   sudo pacman -S --needed --noconfirm "${packages[@]}"
 fi
 
 # Install AUR packages
-mapfile -t aur_packages < "$HOME/.local/share/chezmoi/arch_forign_pkgs.txt"
+mapfile -t aur_packages < "{{ .chezmoi.sourceDir }}/arch-foreign-packages.txt"
 if [ ${#aur_packages[@]} -gt 0 ]; then
   yay -S --needed --noconfirm "${aur_packages[@]}"
 fi
