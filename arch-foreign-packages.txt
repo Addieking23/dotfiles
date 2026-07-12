@@ -2,7 +2,9 @@ brave-bin
 claude-code
 localsend-bin
 portal-bin
+prek-bin
 tre-command
 visual-studio-code-bin
+wt-bin
 yay
 zen-browser-bin

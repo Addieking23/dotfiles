@@ -1,8 +1,0 @@
-brave-bin
-claude-code
-localsend-bin
-portal-bin
-tre-command
-visual-studio-code-bin
-yay
-zen-browser-bin

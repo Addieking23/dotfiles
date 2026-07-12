@@ -1,7 +1,9 @@
 7zip
+actionlint
 age
 arch-wiki-docs
 archlinux-wallpaper
+ast-grep
 baobab
 base
 base-devel
@@ -134,6 +136,7 @@ tmux
 torbrowser-launcher
 totem
 traceroute
+trash-cli
 tree-sitter-cli
 ttf-firacode-nerd
 ttf-hack-nerd
@@ -150,6 +153,7 @@ yazi
 yelp
 zed
 zig
+zizmor
 zoxide
 zram-generator
 zsh
