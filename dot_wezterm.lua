@@ -122,6 +122,33 @@ config.keys = {
 		key = "w",
 		action = wezterm.action.ShowTabNavigator,
 	},
+	{
+		mods = "LEADER",
+		key = "p",
+		action = wezterm.action.ShowTabNavigator,
+	},
+	{
+		mods = "LEADER",
+		key = "P",
+		action = wezterm.action.ShowLauncher,
+	},
+	{
+		mods = "LEADER",
+		key = ",",
+		action = wezterm.action.PromptInputLine({
+			description = "Enter a new name for the tab: ",
+			action = wezterm.action_callback(function(window, _, line)
+				if line then
+					window:activate_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	{
+		mods = "LEADER",
+		key = "m",
+		action = wezterm.action.PaneSelect,
+	},
 }
 
 for i = 0, 9 do
@@ -134,10 +161,11 @@ for i = 0, 9 do
 end
 
 -- tab bar
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
-config.tab_and_split_indices_are_zero_based = true
+config.tab_max_width = 32
+config.tab_and_split_indices_are_zero_based = false
 
 -- and finally, return the configuration to wezterm
 return config

@@ -120,6 +120,7 @@ rlwrap
 rygel
 s-tui
 shellcheck
+shfmt
 signal-desktop
 simple-scan
 snapshot
