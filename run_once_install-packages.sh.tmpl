@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Full upgrade first: installing into a partially upgraded system causes
 # dependency conflicts between repos (e.g. cachyos vs extra on CachyOS)
-sudo pacman -Syu --noconfirm --ask 4
+sudo pacman -Syu
 
 # Install yay if not installed
 if ! command -v yay &>/dev/null; then
@@ -15,8 +15,8 @@ if ! command -v yay &>/dev/null; then
 fi
 
 # Install packages from Arch repos. Kernels and microcode are left to each
-# machine's installer. --ask 4 answers yes to conflict-removal prompts that
-# --noconfirm would otherwise decline (e.g. pipewire-jack vs jack2)
+# machine's installer. Prompts are left interactive so conflicts and provider
+# choices (e.g. pipewire-jack vs jack2) can be resolved by hand.
 packages=()
 while IFS= read -r pkg; do
   case "$pkg" in
@@ -25,11 +25,11 @@ while IFS= read -r pkg; do
   esac
 done < "{{ .chezmoi.sourceDir }}/arch-packages.txt"
 if [ ${#packages[@]} -gt 0 ]; then
-  sudo pacman -S --needed --noconfirm --ask 4 "${packages[@]}"
+  sudo pacman -S --needed "${packages[@]}"
 fi
 
 # Install AUR packages
 mapfile -t aur_packages < "{{ .chezmoi.sourceDir }}/arch-foreign-packages.txt"
 if [ ${#aur_packages[@]} -gt 0 ]; then
-  yay -S --needed --noconfirm --ask 4 "${aur_packages[@]}"
+  yay -S --needed "${aur_packages[@]}"
 fi
