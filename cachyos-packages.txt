@@ -1,11 +1,34 @@
-7zip
+# CachyOS-compatible package list, derived from arch-packages.txt.
+# Lines starting with '#' and blank lines are ignored by
+# run_once_install-packages.sh.tmpl.
+#
+# Removed relative to arch-packages.txt, and why:
+#
+# Owned by the CachyOS installer -- it ships linux-cachyos, its own firmware
+# and microcode, and a bootloader chosen at install time (systemd-boot or
+# Limine on most editions). Pulling the Arch versions in fights that setup:
+#   base  linux  linux-lts  linux-firmware  intel-ucode  grub
+#
+# Hard pacman conflicts with what CachyOS preinstalls:
+#   libreoffice-still  -> conflicts with libreoffice-fresh (CachyOS default)
+#   7zip               -> conflicts with p7zip (shipped on several editions)
+#
+# Audio stack: CachyOS preinstalls and configures the whole PipeWire set.
+# Re-requesting it gains nothing and pipewire-jack forces a jack2/jack
+# provider prompt, which is what stalls an unattended run:
+#   pipewire  pipewire-alsa  pipewire-jack  pipewire-pulse
+#   wireplumber  gst-plugin-pipewire  libpulse
+#
+# Mirror management: CachyOS uses cachyos-rate-mirrors and keeps its repos in
+# a separate mirrorlist. reflector rewrites the Arch mirrorlist underneath it:
+#   reflector
+
 actionlint
 age
 arch-wiki-docs
 archlinux-wallpaper
 ast-grep
 baobab
-base
 base-devel
 bat
 bitwarden
@@ -66,8 +89,6 @@ gnome-user-docs
 gnome-user-share
 gnome-weather
 grilo-plugins
-grub
-gst-plugin-pipewire
 gvfs
 gvfs-afc
 gvfs-dnssd
@@ -78,7 +99,6 @@ gvfs-nfs
 gvfs-onedrive
 gvfs-smb
 gvfs-wsdd
-intel-ucode
 iw
 iwd
 jdk-openjdk
@@ -88,11 +108,6 @@ kitty
 lazydocker
 lazygit
 leiningen
-libpulse
-libreoffice-still
-linux
-linux-firmware
-linux-lts
 loupe
 luarocks
 malcontent
@@ -109,16 +124,11 @@ orca
 pacman-contrib
 perl-crypt-ssleay
 perl-net-ssleay
-pipewire
-pipewire-alsa
-pipewire-jack
-pipewire-pulse
 pkgfile
 postgresql
 proton-vpn-gtk-app
 python-pip
 qpdf
-reflector
 ripgrep
 rlwrap
 rygel
@@ -152,7 +162,6 @@ vim
 wezterm
 wget
 wikiman
-wireplumber
 xdg-desktop-portal-gnome
 xdg-user-dirs-gtk
 yazi

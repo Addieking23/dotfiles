@@ -14,16 +14,19 @@ if ! command -v yay &>/dev/null; then
   rm -rf "$tmpdir"
 fi
 
-# Install packages from Arch repos. Kernels and microcode are left to each
-# machine's installer. Prompts are left interactive so conflicts and provider
-# choices (e.g. pipewire-jack vs jack2) can be resolved by hand.
+# Install packages from cachyos-packages.txt. That list is arch-packages.txt
+# minus the packages CachyOS preinstalls or owns (kernel, firmware, microcode,
+# bootloader, the PipeWire stack) plus the ones that hard-conflict with CachyOS
+# defaults; see the header of that file for the full rationale. Comments and
+# blank lines are skipped. Prompts are left interactive so any remaining
+# provider choices can be resolved by hand.
 packages=()
 while IFS= read -r pkg; do
   case "$pkg" in
-  "" | linux | linux-lts | intel-ucode) ;;
+  "" | \#*) ;;
   *) packages+=("$pkg") ;;
   esac
-done < "{{ .chezmoi.sourceDir }}/arch-packages.txt"
+done < "{{ .chezmoi.sourceDir }}/cachyos-packages.txt"
 if [ ${#packages[@]} -gt 0 ]; then
   sudo pacman -S --needed "${packages[@]}"
 fi
