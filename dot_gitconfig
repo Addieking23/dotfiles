@@ -1,7 +1,58 @@
 [user]
 	name = Addieking23
 	email = 187160262+Addieking23@users.noreply.github.com
+
 [init]
 	defaultBranch = main
+
 [pull]
-	rebase = false
+  rebase = true
+
+[rebase]
+  autoStash = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[core]
+    editor = nvim
+    pager = delta
+    autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+  minus-style                   = syntax "#3d3d00"
+  minus-non-emph-style          = syntax "#281f00"
+  minus-emph-style              = syntax "#555500"
+  line-numbers-minus-style      = "#d4d48f"
+  plus-style                    = syntax "#003066"
+  plus-non-emph-style           = syntax "#001a4f"
+  plus-emph-style               = syntax "#0f4a77"
+  line-numbers-plus-style       = "#c4d5ff"
+  line-numbers-zero-style       = "#989898"
+
+[merge]
+    conflictStyle = zdiff3
+
+[rerere]
+    enabled = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[status]
+    showUntrackedFiles = all
+
+[branch]
+    sort = -committerdate
+
+[format]
+    pretty = reference
