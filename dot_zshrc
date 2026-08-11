@@ -119,8 +119,12 @@ fi
 alias cat="bat"
 alias tree="tre"
 alias ls="eza"
-alias la="eza -la --icons"
-alias lt="eza -lT --icons"
+alias ls='eza --hyperlink --icons'
+alias ll='eza -lah --hyperlink --icons'
+alias la='eza -a --hyperlink --icons'
+alias lt='eza --tree --level=2 --hyperlink --icons'
+alias rg='rg --hyperlink-format=kitty'
+alias fd='fd --hyperlink=always'
 
 alias nv="nvim"
 alias vi="vim"
@@ -130,6 +134,7 @@ alias cl="clear"
 alias nk='NVIM_APPNAME="kickstart_nvim" nvim'
 alias vv='NVIM_APPNAME="vanilla_vim" nvim'
 alias cc="claude --dangerously-skip-permissions"
+alias gl="glow -p"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -162,8 +167,12 @@ eval "$(mise activate zsh)"
 
 export EDITOR="nvim"
 export BAT_THEME="modus_vivendi_deuteranopia"
-path+=("/home/j047m0n/.cargo/bin")
+export PATH="$HOME/.local/bin:$PATH:\
+/home/j047m0n/scripts:\
+/home/j047m0n/.cargo/bin"
 
 source ~/.config/zsh/ZSH_ENV_VARS.zsh
+source /usr/share/nvm/init-nvm.sh
+source /usr/share/aur-scan/integration.zsh
 
 . "$HOME/.local/bin/env"
