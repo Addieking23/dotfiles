@@ -119,7 +119,7 @@ pipewire-jack
 pipewire-pulse
 pkgfile
 postgresql
-proton-vpn-gtk-app
+proton-vpn-cli
 python-pip
 qpdf
 reflector

@@ -1,9 +1,11 @@
 brave-bin
 claude-code
+ks-aur-scanner
 localsend-bin
 oh-my-fish-git
 portal-bin
 prek-bin
+rip2-git
 tre-command
 visual-studio-code-bin
 wt-bin
