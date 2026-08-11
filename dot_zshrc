@@ -135,6 +135,7 @@ alias nk='NVIM_APPNAME="kickstart_nvim" nvim'
 alias vv='NVIM_APPNAME="vanilla_vim" nvim'
 alias cc="claude --dangerously-skip-permissions"
 alias gl="glow -p"
+alias kdiff="kitten diff"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
