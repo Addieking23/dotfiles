@@ -134,7 +134,7 @@ alias cl="clear"
 alias nk='NVIM_APPNAME="kickstart_nvim" nvim'
 alias vv='NVIM_APPNAME="vanilla_vim" nvim'
 alias cc="claude --dangerously-skip-permissions"
-alias gl="glow -p"
+alias glw="glow -p"
 alias kdiff="kitten diff"
 
 function y() {

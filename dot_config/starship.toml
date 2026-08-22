@@ -1,130 +1,164 @@
-# =============================================================================
-#  Modus Vivendi Deuteranopia — a Starship theme
-#  Based on Protesilaos Stavrou's "modus-vivendi-deuteranopia" Emacs theme
-#  https://protesilaos.com/emacs/modus-themes
-#
-#  Modus Vivendi Deuteranopia is the dark, red-green-colorblind-optimized
-#  variant of the Modus family. Instead of the usual red/green coding for
-#  "bad/good", it relies on blue/yellow, which stays distinguishable for
-#  people with deuteranopia and deuteranomaly. This theme carries that same
-#  logic into Starship's git status coloring.
-#
-#  Palette reference (from the official modus-vivendi-deuteranopia palette):
-#    bg-main       #000000
-#    fg-main       #ffffff
-#    fg-dim        #989898
-#    fg-alt        #c6daff   (soft blue-tinted foreground)
-#    border        #646464
-#    blue-warmer   #79a8ff   (used for: clean/success, git branch)
-#    yellow-warmer #fec43f   (used for: warnings, modified/dirty state)
-#    magenta-cooler #b6a0ff  (used for: language versions)
-#    cyan          #00d3d0   (used for: accents / staged files)
-# =============================================================================
+# [metadata]
+# name = "modus_vivendi"
+# author = "adapted by ChatGPT from wjohnsto's carbonfox config"
 
-# Two-line prompt: modules on the first line, input character on the second.
-# No blank line before the prompt.
-add_newline = false
+scan_timeout = 100
 
-# Only these modules are active; everything else Starship ships with is
-# implicitly disabled by leaving it out of `format`. Each module after the
-# first prefixes itself with " - " so separators only show up between
-# sections that actually render.
+"$schema" = "https://starship.rs/config-schema.json"
+
 format = """
+[┌─](#505050)[░▒▓](os_bg)\
+$os\
+$username\
+[](bg:dir_bg fg:os_bg)\
 $directory\
+[](fg:dir_bg bg:git_bg)\
 $git_branch\
 $git_status\
-$c$rust$golang$nodejs$python$java$php$ruby$swift
-$character"""
+[](fg:git_bg bg:lang_bg)\
+$nodejs\
+$rust\
+$golang\
+$c\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+[](fg:lang_bg bg:background)\
+\n[└──](#505050)$character"""
 
-# ---------------------------------------------------------------------------
-# Path
-# ---------------------------------------------------------------------------
+palette = "vivendi_deuteranopia"
+
+[palettes.vivendi_deuteranopia]
+background = "#000000"  # main dark background
+foreground = "#ffffff"  # main text
+blue = "#2fafff"  # accent (from base vivendi)
+yellow = "#d0bc00"  # accent (from base vivendi)
+magenta = "#feacd0"  # secondary accent
+cyan = "#00d3d0"  # info/hint accent
+os_bg = "#505050"  # OS segment background
+os_fg = "#ffffff"  # OS segment foreground
+dir_bg = "#2fafff"  # directory segment background (using blue)
+dir_fg = "#000000"  # directory segment foreground
+git_bg = "#00d3d0"  # git segment background (using cyan)
+git_fg = "#000000"  # git segment foreground
+lang_bg = "#d0bc00"  # language/tool segment background (using yellow)
+lang_fg = "#000000"  # language/tool segment foreground
+red = "#ff5f59"  # still defined, but diff semantics will override
+green = "#44bc44"  # still defined, but diff semantics will override
+
+[os]
+disabled = false
+style = "bg:os_bg fg:os_fg"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bg:os_bg fg:os_fg"
+style_root = "bg:os_bg fg:red"
+format = "[ $user ]($style)"
+
 [directory]
-style = "bold #c6daff"     # fg-alt
-format = "[$path]($style)[$read_only]($read_only_style)"
+style = "fg:dir_fg bg:dir_bg"
+format = "[ $path ]($style)"
 truncation_length = 3
-truncate_to_repo = false   # always show 3 levels, even inside a repo
-read_only = " 󰌾"
-read_only_style = "#fec43f"
+truncation_symbol = "…/"
 
-# ---------------------------------------------------------------------------
-# Git branch
-# ---------------------------------------------------------------------------
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"src" = " "
+
 [git_branch]
-symbol = ""
-style = "bold #79a8ff"     # blue-warmer
-format = "[ - $symbol$branch]($style)"
+symbol = ""
+style = "bg:git_bg"
+format = "[[ $symbol $branch ](fg:git_fg bg:git_bg)]($style)"
 
-# ---------------------------------------------------------------------------
-# Git status — blue for "fine", yellow for "needs attention"
-# (deuteranopia-safe stand-ins for the usual green/red)
-# ---------------------------------------------------------------------------
 [git_status]
-style = "bold #fec43f"     # yellow-warmer
-format = '([ - $all_status$ahead_behind]($style))'
-conflicted = "="
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕"
-untracked = "?${count}"
-stashed = "*${count}"
-modified = "!${count}"
-staged = "+${count}"
-renamed = "»${count}"
-deleted = "✘${count}"
-
-# ---------------------------------------------------------------------------
-# Language versions — one consistent accent so the prompt stays calm
-# ---------------------------------------------------------------------------
-[c]
-symbol = ""
-style = "bold #b6a0ff"     # magenta-cooler
-format = "[ - $symbol($version)]($style)"
-
-[rust]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
-
-[golang]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+style = "bg:git_bg"
+format = "[[($all_status$ahead_behind )](fg:git_fg bg:git_bg)]($style)"
 
 [nodejs]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
-[python]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+[c]
+symbol = " "
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
-[java]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+[rust]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
+
+[golang]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
 [php]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
-[ruby]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+[java]
+symbol = " "
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
-[swift]
-symbol = ""
-style = "bold #b6a0ff"
-format = "[ - $symbol($version)]($style)"
+[kotlin]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
 
-# ---------------------------------------------------------------------------
-# Prompt character — blue on success, yellow on error (no red/green)
-# ---------------------------------------------------------------------------
+[haskell]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
+
+[python]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ( $virtualenv) ](fg:lang_fg bg:lang_bg)]($style)"
+
+[lua]
+symbol = ""
+style = "bg:lang_bg"
+format = "[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)"
+
 [character]
-success_symbol = "[❯](bold #79a8ff)"
-error_symbol = "[❯](bold #fec43f)"
-vimcmd_symbol = "[❮](bold #b6a0ff)"
+disabled = false
+success_symbol = '[\[\$\]](bold fg:#44bc44)'
+error_symbol = '[\[\$\]](bold fg:#ff5f59)'
+vimcmd_symbol = '[\[\]](bold fg:#44bc44)'
+vimcmd_replace_symbol = '[\[\]](bold fg:#feacd0)'
+vimcmd_visual_symbol = '[\[\]](bold fg:#d0bc00)'
+
+[time]
+disabled = false
+use_12hr = true
