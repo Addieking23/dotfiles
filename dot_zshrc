@@ -146,11 +146,11 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
-  if [[ -z "$TMUX" ]]; then
-    exec tmux new-session -A -s main
-  fi
-fi
+# if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+#   if [[ -z "$TMUX" ]]; then
+#     exec tmux new-session -A -s main
+#   fi
+# fi
 
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --info=inline"
 source <(fzf --zsh)
