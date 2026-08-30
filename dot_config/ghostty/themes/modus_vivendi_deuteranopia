@@ -1,0 +1,57 @@
+# Modus Vivendi Deuteranopia — Ghostty Theme
+#
+# Ported from the Modus Themes for GNU Emacs by Protesilaos Stavrou.
+# Source: https://protesilaos.com/emacs/modus-themes-colors
+# The original colour palette is released under CC0 (public domain).
+#
+# This is the dark deuteranopia variant, optimised for users with
+# red-green colour deficiency. Colour-coding uses yellow and blue
+# instead of red and green.
+
+# ── Background & Foreground ──────────────────────────────────────────
+background = #000000
+foreground = #ffffff
+
+# ── Cursor ───────────────────────────────────────────────────────────
+# cursor = yellow-intense (#efef00)
+cursor-color = #efef00
+
+# ── Selection ────────────────────────────────────────────────────────
+selection-background = #5a5a5a
+selection-foreground = #ffffff
+
+# ── Normal (standard) ANSI colours ───────────────────────────────────
+# black  → bg-term-black
+palette = 0=#000000
+# red    → red (#ff5f59)
+palette = 1=#ff5f59
+# green  → green (#44bc44)
+palette = 2=#44bc44
+# yellow → yellow (#cabf00)  [deuteranopia-tuned]
+palette = 3=#cabf00
+# blue   → blue (#2fafff)
+palette = 4=#2fafff
+# magenta → magenta (#feacd0)
+palette = 5=#feacd0
+# cyan   → cyan (#00d3d0)
+palette = 6=#00d3d0
+# white  → fg-term-white (#a6a6a6)
+palette = 7=#a6a6a6
+
+# ── Bright ANSI colours ───────────────────────────────────────────────
+# bright black  → bg-term-black-bright / fg-dim (#595959 / #989898)
+palette = 8=#989898
+# bright red    → red-warmer (#ff6b55)
+palette = 9=#ff6b55
+# bright green  → green-cooler (#00c06f)
+palette = 10=#00c06f
+# bright yellow → yellow-warmer (#ffa00f)  [deuteranopia-tuned]
+palette = 11=#ffa00f
+# bright blue   → blue-warmer (#79a8ff)
+palette = 12=#79a8ff
+# bright magenta → magenta-cooler (#b6a0ff)
+palette = 13=#b6a0ff
+# bright cyan   → cyan-cooler (#6ae4b9)
+palette = 14=#6ae4b9
+# bright white  → fg-term-white-bright (#ffffff)
+palette = 15=#ffffff

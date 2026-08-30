@@ -1,9 +1,10 @@
 brave-bin
 claude-code
+herdr-bin
 ks-aur-scanner
 localsend-bin
 oh-my-fish-git
-oh-my-pi
+oh-my-pi-bin
 portal-bin
 prek-bin
 rip2-git
