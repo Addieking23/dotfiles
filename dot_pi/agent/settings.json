@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.85.0",
+  "theme": "dark",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-access",
+    "npm:pi-lens",
+    "npm:@tintinweb/pi-subagents",
+    "npm:pi-sandbox"
+  ]
+}

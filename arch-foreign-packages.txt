@@ -5,6 +5,7 @@ ks-aur-scanner
 localsend-bin
 oh-my-fish-git
 oh-my-pi-bin
+pi-coding-agent-bin
 portal-bin
 prek-bin
 rip2-git
